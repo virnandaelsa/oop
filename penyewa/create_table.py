@@ -9,4 +9,4 @@ mydb = mysql.connector.connect(
 
 mycursor = mydb.cursor()
 
-mycursor.execute("CREATE TABLE penyewa(id INT(9) AUTO_INCREMENT PRIMARY KEY, NIK INT(12), alamat VARCHAR(255), jenkel VARCHAR(55), no_hp INT(12), status VARCHAR(55))")
+mycursor.execute("CREATE TABLE penyewa(id INT(9) AUTO_INCREMENT PRIMARY KEY, NIK VARCHAR(12),nama VARCHAR(100), alamat VARCHAR(255), jenkel VARCHAR(55),kampus VARCHAR(100), no_hp VARCHAR(13), status VARCHAR(55))")

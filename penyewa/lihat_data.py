@@ -10,8 +10,9 @@ def main():
 
     mycursor = mydb.cursor()
 
-    sql = "CREATE TABLE admin(id INT(9) AUTO_INCREMENT PRIMARY KEY, NIK VARCHAR(12), nama VARCHAR(100),alamat VARCHAR(255), jenkel VARCHAR(55), no_hp VARCHAR(12), status VARCHAR(55))"
+    mycursor.execute("SELECT * FROM penyewa")
 
-    mycursor.execute(sql)
+    myresult = mycursor.fetchall()
 
-main()
+    for x in myresult:
+        print(x)

@@ -1,4 +1,5 @@
-import mysql.connector,lihat_data_admin
+import mysql.connector
+import Admin.lihat_data_admin as a
 
 def main():
     mydb = mysql.connector.connect(
@@ -8,7 +9,7 @@ def main():
         database = "db_py_kelompok"
     )
     con = mydb.cursor()
-    lihat_data_admin.main()
+    a.main()
 
     st = input("Masukan Status yang ingin di ganti: ")
     nik = int(input("NIK yang ingin di ganti: "))

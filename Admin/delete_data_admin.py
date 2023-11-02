@@ -1,6 +1,7 @@
-import mysql.connector,lihat_data_admin
+import mysql.connector
+import Admin.lihat_data_admin as a
 
-def mian():
+def main():
     mydb = mysql.connector.connect(
         host = "localhost",
         user = "root",
@@ -9,7 +10,7 @@ def mian():
     )
     con = mydb.cursor()
 
-    lihat_data_admin.main()
+    a.main()
 
     nik = int(input("Masukan nik: "))
     sql = "DELETE FROM admin WHERE NIK = %s;"

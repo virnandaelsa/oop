@@ -37,9 +37,8 @@ class Admin:
         print(con.rowcount," Data berhasil di tambahkan")
 
     def delete_data(self):
-        u = Admin()
-        u.show_data()
-        
+        self.show_data()
+    
         nik = int(input("Masukan nik: "))
         sql = "DELETE FROM admin WHERE NIK = %s;"
         val = (nik,)
@@ -53,8 +52,7 @@ class Admin:
 
     def update_data(self):
         con = self.__db.cursor()
-        u = Admin()
-        u.show_data()
+        self.show_data()
 
         st = input("\nMasukan Status yang ingin di ganti: ")
         nik = int(input("NIK yang ingin di ganti: "))
@@ -82,8 +80,3 @@ class Admin:
             print(f"Jenis Kelamin :{key[4]} |",end="")
             print(f"No hp :{key[5]} |",end="")
             print(f"Status :{key[6]} |")
-
-
-# adm = Admin()
-
-# adm.update_data()

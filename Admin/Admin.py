@@ -18,14 +18,7 @@ class Admin:
             # print(e)
             pass
 
-    def insert_data(self):
-
-        nik = int(input("Masukan NIK: "))
-        name = input("Masukan nama: ")
-        alamat = input("Masukan alamat: ")
-        jk = input("Masukan jenis kelamin: ")
-        hp = int(input("Masukan no hp: "))
-        sts = int(input("Masukan status: "))
+    def insert_data(self,nik, name, alamat, jk, hp, sts):
 
         con = self.__db.cursor()
         sql = "INSERT INTO `admin` (`NIK`, `nama`, `alamat`, `jenkel`, `no_hp`, `status`) VALUES (%s,%s,%s,%s,%s,%s);"
@@ -36,35 +29,33 @@ class Admin:
 
         print(con.rowcount," Data berhasil di tambahkan")
 
-    def delete_data(self):
-        self.show_data()
-    
-        nik = int(input("Masukan nik: "))
-        sql = "DELETE FROM admin WHERE NIK = %s;"
-        val = (nik,)
+    def delete_data(self,nik):
+
+        sql = f"DELETE FROM admin WHERE NIK = '{nik}';"
         con = self.__db.cursor()
 
-        con.execute(sql,val)
+        con.execute(sql)
 
         self.__db.commit()
+        if con.rowcount < 0 : 
+            print("Data gagal di Hapus")
+        else :
+            print(con.rowcount," Data berhasil di Hapus")
 
-        print(con.rowcount," Data berhasil di hapus")
 
-    def update_data(self):
+    def update_data(self,nik, name, alamat, jk, hp, sts):
         con = self.__db.cursor()
-        self.show_data()
 
-        st = input("\nMasukan Status yang ingin di ganti: ")
-        nik = int(input("NIK yang ingin di ganti: "))
-
-        sql = "UPDATE admin SET status = %s WHERE NIK = %s;"
-        val = (st,nik)
+        sql = f"UPDATE admin SET nama='{name}',alamat='{alamat}',jenkel='{jk}',no_hp='{hp}',status='{sts}' WHERE NIK='{nik}';"
         
-        con.execute(sql,val)
+        con.execute(sql)
 
         self.__db.commit()
 
-        print(con.rowcount," Data berhasil di ubah")
+        if con.rowcount < 0 : 
+            print("Data gagal di Ubah")
+        else :
+            print(con.rowcount," Data berhasil di ubah")
 
     def show_data(self):
         con = self.__db.cursor()
@@ -80,3 +71,4 @@ class Admin:
             print(f"Jenis Kelamin :{key[4]} |",end="")
             print(f"No hp :{key[5]} |",end="")
             print(f"Status :{key[6]} |")
+        print()

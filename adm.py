@@ -1,37 +1,51 @@
-# from Admin import delete_data_admin,insert_data_admin,update_data_admin,lihat_data_admin
-# from Admin import *
-# import Admin.lihat_data_admin as a
-import Admin.lihat_data_admin as a
-import Admin.insert_data_admin as i
-import Admin.delete_data_admin as d
-import Admin.update_data_admin as u
+from sys import path
+path.append('C:\\Users\\ACER\\Documents\\pbl\\Admin')
 
-# while True:
-#     try:
-while True :
-    print (""" 
-    Menu Pilihan 
-        1. Lihat data Admin
-        2. Tambah Pengeluaran
-        3. Ubah data Admin 
-        4. Hapus data admin 
-        5. keluar""")
-    usr = int(input("Silahkan pilih menu : "))
-    
-    if usr > 5 or usr < 1:      
-        print("Masukan tidak valid pilih 1-5 ")
-        continue
-    if usr == 1:
-        a.main()
-    elif usr == 2:
-        i.main()
-    elif usr == 3:
-        u.main()
-        break
-    elif usr == 4:
-        d.main()
-    elif usr == 5:
-        exit()     
-    # except Exception :
-    #     # print(Exception)
-    #     print("\nMasukan Harus berupa angka")
+from Admin import Admin
+
+def main_menu():
+    print("Menu Pilihan:")
+    print("1. Lihat data Admin")
+    print("2. Tambah Data Admin")
+    print("3. Ubah data Admin")
+    print("4. Hapus data admin")
+    print("5. Keluar")
+
+def main():
+    admin_con = Admin()
+    admin_con.connect()
+
+    while True:
+        main_menu()
+        choice = input("Pilih menu (1/2/3/4/5): ")
+
+        if choice == "1":
+          admin_con.lihat()
+        elif choice == "2":
+            nik = int(input("Masukkan NIK : "))
+            name = input("Masukkan nama : ")
+            alamat = input("Masukkan alamat : ")
+            jk = input("Masukkan jenis kelamin : ")
+            hp = int(input("Masukkan no hp : "))
+            sts = int(input("Masukkan statusm: "))
+            admin_con.insert(nik, name, alamat, jk, hp, sts)
+        elif choice == "3":
+            nik = int(input("Masukkan NIK yang akan diperbarui: "))
+            name = input("Masukkan nama baru: ")
+            alamat = input("Masukkan alamat baru: ")
+            jk = input("Masukkan jenis kelamin baru: ")
+            hp = int(input("Masukkan no hp baru: "))
+            sts = int(input("Masukkan status baru: "))
+            admin_con.update(nik, name, alamat, jk, hp, sts)
+        elif choice == "4":
+            nik = int(input("Masukkan NIK yang akan dihapus: "))
+            admin_con.delete(nik)
+        elif choice == "5":
+            print("Keluar dari program.")
+            admin_con.close()
+            break
+        else:
+            print("Pilihan tidak valid. Silakan coba lagi.")
+
+if __name__ == "__main__":
+    main()

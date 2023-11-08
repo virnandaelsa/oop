@@ -11,7 +11,7 @@ class Admin:
 
         mycursor = self.__db.cursor()
         try:
-            sql = "CREATE TABLE user(id INT(9) AUTO_INCREMENT, NIK VARCHAR(12), nama VARCHAR(100),alamat VARCHAR(255), jenkel VARCHAR(55), no_hp VARCHAR(12), status VARCHAR(55), username VARCHAR(255) PRIMARY KEY, password VARCHAR(255))"
+            sql = "CREATE TABLE user(id INT(9) AUTO_INCREMENT PRIMARY KEY, NIK VARCHAR(20), nama VARCHAR(100),alamat VARCHAR(255), jenkel VARCHAR(55), no_hp VARCHAR(12), status VARCHAR(55), username VARCHAR(255) PRIMARY KEY, password VARCHAR(255))"
             mycursor.execute(sql)
             print("Berhasil menambahkan Table penyewa")
         except Exception as e:

@@ -72,4 +72,3 @@ class Kamar:
         con.execute(sql,val)
         self.__db.commit()
 
-        print(con.rowcount," Data berhasil di hapus")

@@ -14,11 +14,12 @@ __db = mysql.connector.connect(
 cur = __db.cursor()
 
 def main_menu():
-    print("Menu Pilihan:")
-    print("1. Ubah username User")
-    print("2. Lihat Data kamar")
-    print("3. Lihat Data Diri")
-    print("4. Keluar")
+    print("1. Tambah Data Kamar")
+    print("2. Lihat Data Kamar")
+    print("3. Edit Data Kamar")
+    print("4. Hapus Data Kamar")
+    print("5. Lihat Data Penyewa")
+    print("6. Keluar")
 
 def main():
     admin_con = Admin.Admin()
@@ -26,23 +27,25 @@ def main():
 
     while True:
         main_menu()
-        choice = input("Pilih menu (1/2/3/4/5): ")
+        choice = input("Pilih menu (1/2/3/4/5/6): ")
 
         if choice == "1":
-            username = input("Masukkan username yang akan diganti : ")
-            admin_con.update_data_penyewa(username)
-        elif choice == "2":
+             kamar_con.insert_kamar()
+
+        elif choice == "2" :
             kamar_con.show_kamar()
+
         elif choice == "3":
-            pass
+            kamar_con.update_kamar()
+        
         elif choice == "4":
+            kamar_con.delete_kamar()
+
+        elif choice == "5" :
             admin_con.show_data()
-            nik = int(input("Masukkan NIK yang akan dihapus: "))
-            admin_con.delete_data(nik)
-        elif choice == "5":
+        elif choice == "8":
             print("Keluar dari program.")
             exit()
-            break
         else:
             print("Pilihan tidak valid. Silakan coba lagi.")
 
@@ -53,3 +56,4 @@ if __name__ == "__main__":
     except Exception as e:
         pass
     main()
+

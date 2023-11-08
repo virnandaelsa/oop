@@ -11,18 +11,18 @@ class Admin:
 
         mycursor = self.__db.cursor()
         try:
-            sql = "CREATE TABLE admin(id INT(9) AUTO_INCREMENT PRIMARY KEY, NIK VARCHAR(12), nama VARCHAR(100),alamat VARCHAR(255), jenkel VARCHAR(55), no_hp VARCHAR(12), status VARCHAR(55))"
+            sql = "CREATE TABLE user(id INT(9) AUTO_INCREMENT, NIK VARCHAR(12), nama VARCHAR(100),alamat VARCHAR(255), jenkel VARCHAR(55), no_hp VARCHAR(12), status VARCHAR(55), username VARCHAR(255) PRIMARY KEY, password VARCHAR(255))"
             mycursor.execute(sql)
-            print("Berhasil menambhakan Table admin")
+            print("Berhasil menambahkan Table penyewa")
         except Exception as e:
             # print(e)
             pass
 
-    def insert_data(self,nik, name, alamat, jk, hp, sts):
+    def insert_data(self,nik, name, alamat, jk, hp, sts, username, pw):
 
         con = self.__db.cursor()
-        sql = "INSERT INTO `admin` (`NIK`, `nama`, `alamat`, `jenkel`, `no_hp`, `status`) VALUES (%s,%s,%s,%s,%s,%s);"
-        val = (nik,name,alamat,jk,hp,sts)
+        sql = "INSERT INTO `user` (`NIK`, `nama`, `alamat`, `jenkel`, `no_hp`, `status`,`username`,`password`) VALUES (%s,%s,%s,%s,%s,%s,%s,%s);"
+        val = (nik,name,alamat,jk,hp,sts,username, pw)
         con.execute(sql,val)
 
         self.__db.commit()
@@ -31,7 +31,7 @@ class Admin:
 
     def delete_data(self,nik):
 
-        sql = f"DELETE FROM admin WHERE NIK = '{nik}';"
+        sql = f"DELETE FROM user WHERE NIK = '{nik}';"
         con = self.__db.cursor()
 
         con.execute(sql)
@@ -59,7 +59,7 @@ class Admin:
 
     def show_data(self):
         con = self.__db.cursor()
-        sql = "SELECT * FROM admin"
+        sql = "SELECT * FROM user WHERE status = 'penyewa'"
         con.execute(sql)
 
         val = con.fetchall()

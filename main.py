@@ -4,8 +4,8 @@ from sys import path
 path.append("C:\\Users\\ACER\\Documents\\pbl\\Admin")
 path.append("C:\\Users\\ACER\\Documents\\pbl\\Kamar")
 
-from Admin import Admin
-from Kamar import Kamar
+import Admin
+import Kamar
 import adm
 import penyewa
 import pemilik
@@ -79,8 +79,8 @@ if __name__ == "__main__":
     # print(logged_in_username[-3])
     if logged_in_username:
         if logged_in_username[-3].lower() == "admin":
-            # admin_con = Admin.Admin()
-            # kamar_con = Kamar.Kamar()
+            admin_con = Admin()
+            kamar_con = Kamar()
             adm.DATA_USER.append(logged_in_username)
             adm.main()
             # print(adm.data_user)

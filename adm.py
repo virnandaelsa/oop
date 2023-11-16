@@ -1,11 +1,11 @@
 import mysql.connector
 import os
 from sys import path
-from Admin import Admin
-from Kamar import Kamar
-
 path.append('C:\\Users\\ACER\\Documents\\pbl\\Admin')
 path.append('C:\\Users\\ACER\\Documents\\pbl\\Kamar')
+
+import Admin
+import kamar
 
 __db = mysql.connector.connect(
     host = "localhost",
@@ -31,15 +31,18 @@ def main_menu():
     print("8. Keluar")
 
 def main():
-    admin_con = Admin.Admin()
-    kamar_con = Kamar.Kamar()
+    admin_con = Admin()
+    kamar_con = kamar()
 
     while True:
         main_menu()
         choice = input("Pilih menu (1/2/3/4/5/6/7/8): ")
 
         if choice == "1":
-          admin_con.show_data()
+          try :
+            admin_con.show_data()
+          except Exception :
+              print ("data belum ada")
         elif choice == "2":
             nik = input("Masukkan NIK : ")
             name = input("Masukkan nama : ")

@@ -1,11 +1,11 @@
 import mysql.connector
 import os
 from sys import path
-from Admin import Admin
-from Kamar import Kamar
-
 path.append('C:\\Users\\ACER\\Documents\\pbl\\Admin')
 path.append('C:\\Users\\ACER\\Documents\\pbl\\Kamar')
+
+from Admin import Admin
+from Kamar import Kamar
 
 __db = mysql.connector.connect(
     host = "localhost",

@@ -1,11 +1,6 @@
 import mysql.connector
-from sys import path
-path.append("C:\\Users\\ACER\\Documents\\pbl\\Admin")
 
-from Admin import Admin
-
-
-class Penyewa:
+class penyewa:
     DATA_USER = []
     def __init__(self):
         self.__db = mysql.connector.connect(

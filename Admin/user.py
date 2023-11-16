@@ -17,6 +17,14 @@ class Admin:
         except Exception as e:
             # print(e)
             pass
+    
+    def login(self,val1, val2): 
+        con = self.__db.cursor()
+        sql = "SELECT status FROM user WHERE username  = %s AND password = %s"
+        val = (val1, val2) 
+        con.execute(sql,val)
+        status = con.fetchone()
+        return str(status[0]) 
 
     def insert_data(self,nik, name, alamat, jk, hp, sts, username, pw):
 
@@ -65,10 +73,10 @@ class Admin:
         val = con.fetchall()
 
         for key in val:
-            print(f"NIK :{key[1]} |",end="")
-            print(f"Nama :{key[2]} |",end="")
-            print(f"Alamat :{key[2]} |",end="")
-            print(f"Jenis Kelamin :{key[4]} |",end="")
-            print(f"No hp :{key[5]} |",end="")
-            print(f"Status :{key[6]} |")
+            print(f"NIK             :{key[1]}")
+            print(f"Nama            :{key[2]}")
+            print(f"Alamat          :{key[2]}")
+            print(f"Jenis Kelamin   :{key[4]}")
+            print(f"No hp           :{key[5]}")
+            print(f"Status          :{key[6]}\n")
         print()
